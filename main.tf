@@ -1,11 +1,14 @@
-
+# Manages a Node Pool within a Kubernetes Cluster.
+#
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool
+#
 resource "azurerm_kubernetes_cluster_node_pool" "nodepool" {
   name                  = var.name
   kubernetes_cluster_id = var.kubernetes_cluster_id
 
   node_count           = !var.enable_auto_scaling ? var.node_count : null
   orchestrator_version = var.kubernetes_version
-  availability_zones   = var.availability_zones
+  zones                = var.zones
 
   # Node configuration
   vm_size               = var.vm_size
@@ -19,9 +22,10 @@ resource "azurerm_kubernetes_cluster_node_pool" "nodepool" {
   os_disk_size_gb        = var.disk_size_gb
   os_disk_type           = var.disk_type
   os_type                = var.os_type
+  pod_subnet_id          = var.pod_subnet_id
 
   # Network configuration
-  vnet_subnet_id = var.subnet_id
+  vnet_subnet_id = var.vnet_subnet_id
 
   # Upgrade configuration
   upgrade_settings {

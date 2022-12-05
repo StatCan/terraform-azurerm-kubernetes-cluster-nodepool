@@ -15,7 +15,7 @@ variable "kubernetes_version" {
   default = null
 }
 
-variable "availability_zones" {
+variable "zones" {
   type    = list(string)
   default = null
 }
@@ -50,7 +50,11 @@ variable "os_type" {
   default = "Linux"
 }
 
-variable "subnet_id" {
+variable "pod_subnet_id" {
+
+}
+
+variable "vnet_subnet_id" {
 
 }
 
