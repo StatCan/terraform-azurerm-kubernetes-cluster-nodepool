@@ -1,63 +1,67 @@
-# Azure Kubernetes Service (AKS) Cluster
+# terraform-azurerm-kubernetes-cluster-nodepool
 
-## Introduction
-
-This module deploys an Azure Kubernetes Service (AKS) nodepool.
-
-## Security Controls
-
-This module is not sufficient on its own to meet the necessary security controls required
-by the Government of Canada. It provides a framework for implementing the controls that
-are determined by your organization's Security Assessment & Authorization (SA&A) process.
-
-## Dependencies
-
-* An existing Azure Kubernetes Service (AKS) cluster
-
-### Networking
-
-Nodes in the cluster must be attached to an existing subnet within an Azure Virtual Network.
-The subnet **must** have a Network Virtual Appliance at the default route (ie. `0.0.0.0/0`). See the [Azure documentation on egress](https://docs.microsoft.com/en-us/azure/aks/egress-outboundtype#outbound-type-of-userdefinedrouting) for more information. This can be an Azure Firewall or a virtual appliance performing firewall/routing functions.
-
-Ensure your virtual network IP space does not overlap with the subnets defined in the [Azure CNI prerequisites](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#prerequisites).
-
-## Optional (depending on options configured):
-
-* None
+This repository contains an opionionated Terraform module that can be used to provision a Kubernetes Node Pool.
 
 ## Usage
 
-```terraform
-module "cluster" {
-  source = "git::https://github.com/canada-ca-terraform-modules/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=$REF"
+Examples for this module along with various configurations can be found in the [examples/](examples/) folder.
 
-  # ... your variable values
-}
-```
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-## Variables Values
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.15, < 4.0 |
 
-| Name                   | Type         | Required | Value                                                                                |
-|------------------------|--------------|----------|--------------------------------------------------------------------------------------|
-| name                   | string       | yes      | Name of the node pool created by the module                                          |
-| kubernetes_cluster_id  | string       | yes      | Azure Resource ID for the Azure Kubernetes Cluster (AKS) to add the nodepool to      |
-| node_count             | number       | no       | Number of nodes in the node pool                                                     |
-| kubernetes_version     | string       | no       | Kubernetes version of the node pool (if unset, uses the same version as the cluster) |
-| availability_zones     | list(string) | no       | List of availability zones for the node pool                                         |
-| vm_size                | string       | no       | VM size of the node pool                                                             |
-| labels                 | map(string)  | no       | List of labels to assign to nodes in the node pool                                   |
-| enable_host_encryption | bool         | no       | Enable host encryption in the node pool                                              |
-| disk_size_gb           | number       | no       | Size of the node disk size of the node pool                                          |
-| disk_type              | string       | no       | Type of disk used by the node pool (Managed, Ephemeral)                              |
-| os_type                | string       | no       | OS type for the node pool (Linux or Windows)                                         |
-| subnet_id              | string       | yes      | Subnet where to attach nodes in the node pool                                        |
-| upgrade_max_surge      | string       | no       | Maximum node surge during a node pool upgrade                                        |
-| enable_auto_scaling    | bool         | no       | Enable node pool auto scaling                                                        |
-| auto_scaling_min_nodes | number       | no       | Minimum number of nodes when auto scaling is enabled                                 |
-| auto_scaling_max_nodes | number       | no       | Maximum number of nodes when auto scaling is enabled                                 |
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 3.15, < 4.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_kubernetes_cluster_node_pool.nodepool](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_auto_scaling_max_nodes"></a> [auto\_scaling\_max\_nodes](#input\_auto\_scaling\_max\_nodes) | n/a | `number` | `3` | no |
+| <a name="input_auto_scaling_min_nodes"></a> [auto\_scaling\_min\_nodes](#input\_auto\_scaling\_min\_nodes) | n/a | `number` | `0` | no |
+| <a name="input_disk_size_gb"></a> [disk\_size\_gb](#input\_disk\_size\_gb) | n/a | `number` | `256` | no |
+| <a name="input_disk_type"></a> [disk\_type](#input\_disk\_type) | n/a | `string` | `"Managed"` | no |
+| <a name="input_enable_auto_scaling"></a> [enable\_auto\_scaling](#input\_enable\_auto\_scaling) | n/a | `bool` | `false` | no |
+| <a name="input_enable_host_encryption"></a> [enable\_host\_encryption](#input\_enable\_host\_encryption) | n/a | `bool` | `false` | no |
+| <a name="input_kubernetes_cluster_id"></a> [kubernetes\_cluster\_id](#input\_kubernetes\_cluster\_id) | ID of the Kubernetes cluster | `any` | n/a | yes |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | n/a | `any` | `null` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | n/a | `map(string)` | `{}` | no |
+| <a name="input_max_pods"></a> [max\_pods](#input\_max\_pods) | n/a | `number` | `60` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the pool | `any` | n/a | yes |
+| <a name="input_node_count"></a> [node\_count](#input\_node\_count) | n/a | `number` | `3` | no |
+| <a name="input_os_type"></a> [os\_type](#input\_os\_type) | n/a | `string` | `"Linux"` | no |
+| <a name="input_pod_subnet_id"></a> [pod\_subnet\_id](#input\_pod\_subnet\_id) | n/a | `any` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(string)` | `{}` | no |
+| <a name="input_taints"></a> [taints](#input\_taints) | n/a | `list(string)` | `[]` | no |
+| <a name="input_uprade_max_surge"></a> [uprade\_max\_surge](#input\_uprade\_max\_surge) | Per documentation, https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster#customize-node-surge-upgrade For production node pools, we recommend a max-surge setting of 33%. | `string` | `"33%"` | no |
+| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | n/a | `string` | `"Standard_D2s_v3"` | no |
+| <a name="input_vnet_subnet_id"></a> [vnet\_subnet\_id](#input\_vnet\_subnet\_id) | n/a | `any` | n/a | yes |
+| <a name="input_zones"></a> [zones](#input\_zones) | n/a | `list(string)` | `null` | no |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
 
 ## History
 
-| Date       | Release     | Change          |
-| -----------| ------------| ----------------|
-| 2021-07-06 | 1.0.0       | Initial release |
+| Date       | Release | Change         |
+| ---------- | ------- | -------------- |
+| 2022-11-22 | v1.0.0  | initial commit |
