@@ -64,4 +64,5 @@ No outputs.
 
 | Date       | Release | Change         |
 | ---------- | ------- | -------------- |
+| 2022-11-22 | v2.0.0  | updated module |
 | 2022-11-22 | v1.0.0  | initial commit |
