@@ -39,10 +39,10 @@ resource "azurerm_kubernetes_cluster" "example" {
 
 # Invokes the terraform-azurerm-kubernetes-cluster-nodepool module used to create a Node Pool within a Kubernetes Cluster.
 #
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool
+# https://gitlab.k8s.cloud.statcan.ca/cloudnative/platform/terraform/terraform-azure-kubernetes-cluster-nodepool
 #
 module "internal_node_pool" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=main"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/platform/terraform/terraform-azure-kubernetes-cluster-nodepool.git?ref=main"
 
   name                  = "internal"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.example.id
