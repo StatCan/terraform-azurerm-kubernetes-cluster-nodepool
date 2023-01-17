@@ -42,7 +42,7 @@ resource "azurerm_kubernetes_cluster" "example" {
 # https://gitlab.k8s.cloud.statcan.ca/cloudnative/platform/terraform/terraform-azure-kubernetes-cluster-nodepool
 #
 module "internal_node_pool" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/platform/terraform/terraform-azure-kubernetes-cluster-nodepool.git?ref=main"
+  source = "../"
 
   name                  = "internal"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.example.id
