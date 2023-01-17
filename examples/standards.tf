@@ -41,7 +41,7 @@ resource "azurerm_kubernetes_cluster" "example" {
 #
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool
 #
-module "route_server_example" {
+module "internal_node_pool" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=main"
 
   name                  = "internal"
@@ -50,6 +50,6 @@ module "route_server_example" {
   node_count            = 1
 
   tags = {
-    Environment = "Production"
+    Environment = "Development"
   }
 }
