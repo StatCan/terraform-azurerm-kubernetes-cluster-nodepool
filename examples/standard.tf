@@ -47,6 +47,7 @@ module "internal_node_pool" {
   name                  = "internal"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.example.id
   vm_size               = "Standard_DS2_v2"
+  vm_priority           = "Spot"
   node_count            = 1
 
   tags = {
