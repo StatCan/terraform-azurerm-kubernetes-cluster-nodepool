@@ -45,6 +45,7 @@ Examples for this module along with various configurations can be found in the [
 | <a name="input_os_type"></a> [os\_type](#input\_os\_type) | The Operating System which should be used for this Node Pool. Possible values are Linux and Windows. | `string` | `"Linux"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resource. | `map(string)` | `{}` | no |
 | <a name="input_upgrade_max_surge"></a> [upgrade\_max\_surge](#input\_upgrade\_max\_surge) | The maximum number or percentage of nodes which will be added to the Node Pool size during an upgrade. | `string` | `"33%"` | no |
+| <a name="input_vm_priority"></a> [vm\_priority](#input\_vm\_priority) | The Priority for Virtual Machines within the Virtual Machine Scale Set that powers this Node Pool. Possible values are Regular and Spot. | `string` | `"Regular"` | no |
 | <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The SKU which should be used for the Virtual Machines used in this Node Pool. | `string` | `"Standard_D2s_v3"` | no |
 
 ## Outputs
@@ -56,6 +57,7 @@ Examples for this module along with various configurations can be found in the [
 
 ## History
 
-| Date       | Release | Change         |
-| ---------- | ------- | -------------- |
-| 2022-11-22 | v1.0.0  | initial commit |
+| Date       | Release | Change                      |
+| ---------- | ------- | --------------------------- |
+| 2023-03-17 | v2.0.0  | Major refactor of variables |
+| 2022-11-22 | v1.0.0  | initial commit              |

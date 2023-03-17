@@ -58,6 +58,12 @@ variable "os_type" {
   default     = "Linux"
 }
 
+variable "vm_priority" {
+  description = "The Priority for Virtual Machines within the Virtual Machine Scale Set that powers this Node Pool. Possible values are Regular and Spot."
+  type        = string
+  default     = "Regular"
+}
+
 variable "availability_zones" {
   description = " Specifies a list of Availability Zones in which this Kubernetes Cluster Node Pool should be located."
   type        = list(string)
