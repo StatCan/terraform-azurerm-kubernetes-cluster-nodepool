@@ -15,6 +15,20 @@ resource "azurerm_resource_group" "example" {
   location = "Canada Central"
 }
 
+resource "azurerm_virtual_network" "example" {
+  name                = "example-vnet"
+  address_space       = ["10.0.0.0/16"]
+  location            = "Canada Central"
+  resource_group_name = azurerm_resource_group.example.name
+}
+
+resource "azurerm_subnet" "example" {
+  name                 = "example"
+  resource_group_name  = azurerm_resource_group.example.name
+  virtual_network_name = azurerm_virtual_network.example.name
+  address_prefixes     = ["10.0.2.0/24"]
+}
+
 resource "azurerm_kubernetes_cluster" "example" {
   name                = "example-aks1"
   location            = azurerm_resource_group.example.location
@@ -49,6 +63,9 @@ module "internal_node_pool" {
   vm_size               = "Standard_DS2_v2"
   vm_priority           = "Spot"
   node_count            = 1
+
+  vnet_subnet_id = azurerm_subnet.example.id
+  pod_subnet_id  = azurerm_subnet.example.id
 
   tags = {
     Environment = "Development"
