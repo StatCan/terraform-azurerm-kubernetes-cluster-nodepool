@@ -60,12 +60,6 @@ variable "os_type" {
   default     = "Linux"
 }
 
-variable "vm_priority" {
-  description = "The Priority for Virtual Machines within the Virtual Machine Scale Set that powers this Node Pool. Possible values are Regular and Spot."
-  type        = string
-  default     = "Regular"
-}
-
 variable "availability_zones" {
   description = " Specifies a list of Availability Zones in which this Kubernetes Cluster Node Pool should be located."
   type        = list(string)
@@ -88,6 +82,28 @@ variable "node_taints" {
   description = "A list of Kubernetes taints which should be applied to nodes in the agent pool."
   type        = list(string)
   default     = []
+}
+
+###################################
+### Node Priority Configuration ###
+###################################
+
+variable "vm_priority" {
+  description = "The Priority for Virtual Machines within the Virtual Machine Scale Set that powers this Node Pool. Possible values are Regular and Spot."
+  type        = string
+  default     = "Regular"
+}
+
+variable "eviction_policy" {
+  description = "The Eviction Policy which should be used for Virtual Machines within the Virtual Machine Scale Set powering this Node Pool. Possible values are Deallocate and Delete."
+  type        = string
+  default     = "Delete"
+}
+
+variable "spot_max_price" {
+  description = "The maximum price you're willing to pay in USD per Virtual Machine. Valid values are -1 (the current on-demand price for a Virtual Machine) or a positive value with up to five decimal places."
+  type        = string
+  default     = "-1"
 }
 
 ##################

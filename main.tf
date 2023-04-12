@@ -16,10 +16,14 @@ resource "azurerm_kubernetes_cluster_node_pool" "this" {
   # Node configuration
   vm_size     = var.vm_size
   os_type     = var.os_type
-  priority    = var.vm_priority
   node_labels = var.node_labels
   node_taints = var.node_taints
   max_pods    = var.max_pods
+
+  # Node priority configuration
+  priority        = var.vm_priority
+  eviction_policy = var.vm_priority == "Spot" ? var.eviction_policy : null
+  spot_max_price  = var.vm_priority == "Spot" ? var.spot_max_price : null
 
   # Autoscaling
   node_count          = !var.enable_auto_scaling ? var.node_count : null
