@@ -33,8 +33,12 @@ resource "azurerm_kubernetes_cluster_node_pool" "this" {
   os_disk_type           = var.os_disk_type
 
   # Upgrade configuration
-  upgrade_settings {
-    max_surge = var.vm_priority == "Spot" ? null : var.upgrade_max_surge
+  dynamic "upgrade_settings" {
+    for_each = var.vm_priority != "Spot" ? ["upgrade_settings"] : []
+
+    content {
+      max_surge = var.upgrade_max_surge
+    }
   }
 
   tags = var.tags
