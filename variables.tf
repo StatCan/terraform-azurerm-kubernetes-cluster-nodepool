@@ -35,11 +35,13 @@ variable "kubernetes_version" {
 variable "pod_subnet_id" {
   description = "The ID of the Subnet where the pods in the Node Pool should exist."
   type        = string
+  default     = null
 }
 
 variable "vnet_subnet_id" {
   description = "The ID of the Subnet where this Node Pool should exist."
   type        = string
+  default     = null
 }
 
 ##########################
