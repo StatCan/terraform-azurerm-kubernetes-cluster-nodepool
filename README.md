@@ -59,5 +59,6 @@ Examples for this module along with various configurations can be found in the [
 
 | Date       | Release | Change                      |
 | ---------- | ------- | --------------------------- |
+| 2023-04-12 | v2.0.1  | Conditional max-surge logic |
 | 2023-03-17 | v2.0.0  | Major refactor of variables |
 | 2022-11-22 | v1.0.0  | initial commit              |

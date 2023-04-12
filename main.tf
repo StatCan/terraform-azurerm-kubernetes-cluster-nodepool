@@ -34,7 +34,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "this" {
 
   # Upgrade configuration
   upgrade_settings {
-    max_surge = var.upgrade_max_surge
+    max_surge = var.vm_priority == "Spot" ? null : var.upgrade_max_surge
   }
 
   tags = var.tags
