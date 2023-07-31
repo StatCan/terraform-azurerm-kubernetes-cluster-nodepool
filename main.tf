@@ -5,7 +5,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "nodepool" {
 
   node_count           = !var.enable_auto_scaling ? var.node_count : null
   orchestrator_version = var.kubernetes_version
-  availability_zones   = var.availability_zones
+  zones                = var.availability_zones
 
   # Node configuration
   vm_size               = var.vm_size
