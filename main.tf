@@ -45,5 +45,5 @@ resource "azurerm_kubernetes_cluster_node_pool" "this" {
     }
   }
 
-  tags = var.tags
+  tags = local.tags
 }
