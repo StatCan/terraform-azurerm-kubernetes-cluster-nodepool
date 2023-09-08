@@ -61,6 +61,7 @@ Examples for this module along with various configurations can be found in the [
 
 | Date       | Release | Change                                                  |
 | ---------- | ------- | ------------------------------------------------------- |
+| 2023-09-06 | v2.2.1  | Implement tagging strategy for Azure resources          |
 | 2023-04-12 | v2.2.0  | Add variable eviction_policy & spot_max_price           |
 | 2023-04-12 | v2.1.1  | Only set upgrade settings if VM priority is not Spot    |
 | 2023-04-12 | v2.1.0  | Set var.pod_subnet_id & var.vnet_subnet_id as optional  |
