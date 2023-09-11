@@ -38,7 +38,7 @@ module "cluster" {
 ## Variables Values
 
 | Name                   | Type         | Required | Value                                                                                |
-|------------------------|--------------|----------|--------------------------------------------------------------------------------------|
+| ---------------------- | ------------ | -------- | ------------------------------------------------------------------------------------ |
 | name                   | string       | yes      | Name of the node pool created by the module                                          |
 | kubernetes_cluster_id  | string       | yes      | Azure Resource ID for the Azure Kubernetes Cluster (AKS) to add the nodepool to      |
 | node_count             | number       | no       | Number of nodes in the node pool                                                     |
@@ -58,6 +58,9 @@ module "cluster" {
 
 ## History
 
-| Date       | Release     | Change          |
-| -----------| ------------| ----------------|
-| 2021-07-06 | 1.0.0       | Initial release |
+| Date       | Release | Change                                        |
+| ---------- | ------- | --------------------------------------------- |
+| 2023-09-11 | 1.0.3   | Backport tagging strategy for Azure resources |
+| 2023-07-21 | 1.0.2   | Leverage AKS managed blob-csi driver          |
+| 2023-03-17 | 1.0.1   | Add vm_priority variable                      |
+| 2021-07-06 | 1.0.0   | Initial release                               |

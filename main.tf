@@ -33,5 +33,5 @@ resource "azurerm_kubernetes_cluster_node_pool" "nodepool" {
   min_count           = var.enable_auto_scaling ? var.auto_scaling_min_nodes : null
   max_count           = var.enable_auto_scaling ? var.auto_scaling_max_nodes : null
 
-  tags = var.tags
+  tags = local.tags
 }
