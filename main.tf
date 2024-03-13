@@ -45,5 +45,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "this" {
     }
   }
 
+  # Permit ("System") or deny ("User") the scheduling of critical system pods
+  mode = var.mode
+
   tags = local.tags
 }

@@ -167,3 +167,14 @@ variable "upgrade_max_surge" {
   type        = string
   default     = "33%"
 }
+
+############
+### Mode ###
+############
+
+# See https://learn.microsoft.com/en-us/azure/aks/use-system-pools
+variable "mode" {
+  description = "When set to System, permits the scheduling of critical system pods onto nodes in this Node Pool"
+  type        = string
+  default     = "User"
+}
