@@ -61,6 +61,7 @@ Examples for this module along with various configurations can be found in the [
 
 | Date       | Release | Change                                                  |
 | ---------- | ------- | ------------------------------------------------------- |
+| 2024-03-12 | v2.3.0  | Enable specifying the System mode on the Node Pool      |
 | 2023-09-06 | v2.2.1  | Implement tagging strategy for Azure resources          |
 | 2023-04-12 | v2.2.0  | Add variable eviction_policy & spot_max_price           |
 | 2023-04-12 | v2.1.1  | Only set upgrade settings if VM priority is not Spot    |
